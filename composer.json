@@ -2,6 +2,7 @@
     "name": "moxy/router",
     "description": "A Extensible Router for PHP Applications",
     "type": "library",
+    "version": "0.1.0",
     "license": "MIT",
     "authors": [
         {
