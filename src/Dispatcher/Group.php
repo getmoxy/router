@@ -2,7 +2,7 @@
 namespace Moxy\Dispatcher;
 
 /**
- * A Basic Static Route Dispatcher
+ * A Group Dispatcher
  *
  * @category   Dispatcher
  * @package    Moxy\Router
@@ -10,7 +10,7 @@ namespace Moxy\Dispatcher;
  * @copyright  2015 Tom Morton
  * @license    MIT
  */
-class Static implements \Moxy\Interface\Dispatcher {
+class Static implements \Moxy\Router\DispatcherInterface {
 
     protected $_routes = array();
     protected $_response;
@@ -19,21 +19,22 @@ class Static implements \Moxy\Interface\Dispatcher {
     {
         if(!is_string($staticRoute)) {
             throw new \Moxy\Exception('Static Routes must be specified as string type, found type: ' . gettype($staticRoute));
-        }
+        } 
 
-        if(!is_callable($callback)) {
-            throw new \Moxy\Exception('Invalid callback for route ' . $staticRoute);
-        }
-
-        $this->_routes[$staticRoute] = $callback;
+        $this->_routes[] = $callback;
     }
 
     public function run($request)
     {
-        $uri = $request->getURI();
-
-        if(isset($this->_routes[$uri])) {
-            return call_user_func($this->_routes[$uri],$request, $this->_response);
+        foreach($this->_routes as $dispatcher) {
+            try {
+                $response = $dispatcher->run($request);
+                if($response) {
+                    return $response;
+                }
+            } catch(\Moxy\Exception\NoRoute $e) {
+                // Do nothing for now; we'll handle this later
+            }
         }
 
         throw new \Moxy\Exception\NoRoute('No route found for ' . $uri);

@@ -1,9 +1,9 @@
 <?php
 namespace Moxy;
 
-class Router {
+class Router extends \Moxy\Event\Emitter {
 
-    public function __construct(\Moxy\Interface\RouteDispatcher $dispatcher)
+    public function __construct(Moxy\Interface\RouteDispatcher $dispatcher)
     {
         $this->dispatcher = $dispatcher;
     }
@@ -13,7 +13,7 @@ class Router {
         try {
             return $this->dispatcher->run($request);
         } catch(\Moxy\Exception\NoRoute $e) {
-            // Special 404 Route (TODO)
+            $this->emit('router.code.404', array('request' => $request));
         }
     }
 

@@ -1,0 +1,17 @@
+addons:
+  code_climate:
+    repo_token: "3a972267aaa8b7c0392932751f5d31134209a10f269e40e1b7422e2a03213985"
+
+language: php
+
+php:
+    5.5
+    5.6
+    hhvm
+
+before_script:
+    - composer install --dev --prefer-source
+
+after_script:
+  - vendor/bin/test-reporter --stdout > codeclimate.json
+  - 'curl -X POST -d @codeclimate.json -H "Content-Type: application/json" -H "User-Agent: Code Climate (PHP Test Reporter v1.0.1-dev)"  https://codeclimate.com/test_reports'

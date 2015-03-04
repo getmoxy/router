@@ -1,5 +1,5 @@
 <?php
-namespace Moxy\Request;
+namespace Moxy;
 
 /**
  * HTTP Request
@@ -10,17 +10,36 @@ namespace Moxy\Request;
  * @copyright  2015 Tom Morton
  * @license    MIT
  */
-class Request implements \Moxy\Interface\Request {
+class Request implements \Moxy\Router\RequestInterface {
 
     protected $_uri;
+    protected $_method;
+
+    public function setURI($uri)
+    {
+        if(!is_string($uri)) {
+            throw new \Exception('Request URI must be a string');
+        }
+
+        $this->_uri = $uri;
+    }
 
     public function getURI()
     {
         return $this->_uri;
     }
     
+    public function setMethod($method)
+    {
+        if(!is_string($method)) {
+            throw new \Exception('Request Method must be a string');
+        }
+
+        $this->_method = $method;
+    }
+
     public function getMethod()
     {
-        return $this->_uri;
+        return $this->_method;
     }
 }

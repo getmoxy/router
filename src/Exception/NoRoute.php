@@ -10,6 +10,6 @@ namespace Moxy\Exception;
  * @copyright  2015 Tom Morton
  * @license    MIT
  */
-class NoRoute extends \Moxy\Exception {
+class NoRoute extends \Exception {
 
 }

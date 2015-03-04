@@ -10,6 +10,6 @@ namespace Moxy;
  * @copyright  2015 Tom Morton
  * @license    MIT
  */
-class Exception {
+class Exception extends \Exception {
 
 }
