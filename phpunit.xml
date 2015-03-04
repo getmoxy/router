@@ -32,4 +32,9 @@
              logIncompleteSkipped="false"/>
         <log type="coverage-text" target="build/logs/cov-txt.txt"/>
     </logging>
+
+    <php>
+        <server name="REQUEST_URI" value="/test" />
+        <server name="REQUEST_METHOD" value="GET" />
+    </php>
 </phpunit>

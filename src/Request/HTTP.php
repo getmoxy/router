@@ -13,9 +13,9 @@ namespace Moxy\Request;
 class HTTP extends \Moxy\Request {
 
 
-    public function __construct()
+    public function __construct($server)
     {
-        $this->_uri = filter_input(INPUT_SERVER, 'REQUEST_URI');
-        $this->_method = filter_input(INPUT_SERVER, 'REQUEST_METHOD');
+        $this->_uri = $server['REQUEST_URI'];
+        $this->_method = $server['REQUEST_METHOD'];
     }
 }
