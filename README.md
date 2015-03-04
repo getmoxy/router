@@ -1,4 +1,6 @@
-==Moxy\Router==
+Moxy\Router
+====
+
 [![Build Status](https://travis-ci.org/getmoxy/router.png?branch=master)](https://travis-ci.org/getmoxy/router) 
 [![Code Coverage](https://codeclimate.com/github/getmoxy/router/badges/coverage.svg)](https://codeclimate.com/github/getmoxy/router)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/getmoxy/router/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/getmoxy/router/?branch=master)
